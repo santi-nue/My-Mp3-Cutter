@@ -47,7 +47,8 @@ public class PlayMusicActivity extends AppCompatActivity {
     private ContentValues contentValues;
     private LinearLayout linearLayoutRingtone, linearLayoutContacts, linearLayoutNotifications, linearLayoutAlarm;
     private static final int CODE_RINGTONE = 101, CODE_NOTIFY = 102, CODE_ALARM = 103, CODE_CONTACT = 104;
-     String fileName;
+    String fileName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +67,7 @@ public class PlayMusicActivity extends AppCompatActivity {
         adView = (AdView) findViewById(R.id.adViewPlayMusic);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-          fileName = getIntent().getStringExtra(getResources().getString(R.string.music_file_name));
+        fileName = getIntent().getStringExtra(getResources().getString(R.string.music_file_name));
         textViewFileName.setText(fileName);
         uri = getIntent().getParcelableExtra(getResources().getString(R.string.selected_song_uri));
 
@@ -165,9 +166,10 @@ public class PlayMusicActivity extends AppCompatActivity {
 
     void setRingtone(int type) {
         try {
-            Uri uri=MediaStore.Audio.Media.getContentUriForPath(file.getAbsolutePath());
+             Uri uri=MediaStore.Audio.Media.getContentUriForPath(file.getAbsolutePath());
+          //  Uri uri = UtilsKt.getMediaCollectionURI();
             Log.d("Utilsss", "setRingtone-> Uri: " + uri);
-            // getContentResolver().delete(uri, MediaStore.MediaColumns.DATA + "=\"" + file.getAbsolutePath() + "\"", null);
+            //   getContentResolver().delete(uri, MediaStore.MediaColumns.DATA + "=\"" + file.getAbsolutePath() + "\"", null);
 
             contentValues = new ContentValues();
             contentValues.put(MediaStore.MediaColumns.DATA, file.getAbsolutePath());
@@ -176,6 +178,7 @@ public class PlayMusicActivity extends AppCompatActivity {
             contentValues.put(MediaStore.Audio.Media.ARTIST, getResources().getString(R.string.app_name));
             contentValues.put(MediaStore.Audio.Media.IS_RINGTONE, true);
             contentValues.put(MediaStore.Audio.Media.IS_ALARM, false);
+            contentValues.put(MediaStore.Audio.Media.DISPLAY_NAME, "hamza");
             contentValues.put(MediaStore.Audio.Media.IS_MUSIC, false);
             contentValues.put(MediaStore.Audio.Media.IS_RINGTONE, false);
             Uri newUri1 = getContentResolver().insert(uri, contentValues);

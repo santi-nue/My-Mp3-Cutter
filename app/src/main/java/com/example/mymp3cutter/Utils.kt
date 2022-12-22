@@ -84,3 +84,13 @@ fun Context.getURIFromPathString(path: String): Uri {
 
 }
 
+fun getMediaCollectionURI(): Uri {
+    val collection: Uri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        MediaStore.Audio.Media.getContentUri(MediaStore.VOLUME_EXTERNAL)
+    } else {
+        MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
+    }
+    return collection
+
+}
+
