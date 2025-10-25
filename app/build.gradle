@@ -39,5 +39,5 @@ dependencies {
     implementation 'androidx.annotation:annotation:1.0.0'
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'com.google.android.gms:play-services-ads:17.1.2'
-    implementation 'com.crystal:crystalrangeseekbar:1.1.4'
+    implementation 'com.github.luongvo:crystal-range-seekbar:1.1.4'
 }
